@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>District Data Downloader</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial; max-width:900px; margin:30px auto; padding:0 16px; }
+    #statusBox { white-space: pre-wrap; background:#f6f6f6; padding:12px; border-radius:8px; max-height:320px; overflow:auto; border:1px solid #e0e0e0; }
+    #controls { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+    button { padding:10px 14px; border-radius:8px; border:1px solid #ccc; background:#fff; cursor:pointer; }
+    #spinner { display:none; font-size:14px; color:#333; }
+  </style>
+</head>
+<body>
+  <h1>Download Latest District Data</h1>
+  <div id="controls">
+    <button id="downloadBtn">Download latest district data</button>
+    <span id="spinner">⏳ Scraping…</span>
+    <span id="lastUpdated" style="color:#666; margin-left:auto;"></span>
+  </div>
+
+<p style="font-weight:700; color:#b03b3b; margin-top:8px;">
+  Please do NOT close the new tab that opens after clicking <em>Download</em>. The scraper may take <strong>5–30 minutes</strong> to fetch the latest district data. The download will start automatically when it finishes.
+</p>
+
+  <p><strong>Progress:</strong></p>
+  <div id="statusBox">Status will appear here when a scrape runs.</div>
+
+  <script>
+    const statusBox = document.getElementById('statusBox');
+    const spinner = document.getElementById('spinner');
+    const lastUpdated = document.getElementById('lastUpdated');
+
+    async function fetchStatus() {
+      try {
+        const res = await fetch('/status', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Status fetch failed');
+        const j = await res.json();
+        const text = j.progress || "No progress yet.";
+        statusBox.textContent = text;
+        lastUpdated.textContent = new Date().toLocaleTimeString();
+        // If progress text is non-empty, show spinner while scraper likely running
+        if (text.trim() && spinner.style.display === 'none') {
+          spinner.style.display = 'inline-block';
+        }
+      } catch (err) {
+        statusBox.textContent = 'Status unavailable.';
+      }
+    }
+
+    // Poll every 3 seconds
+    const POLL_INTERVAL = 3000;
+    fetchStatus();
+    const pollId = setInterval(fetchStatus, POLL_INTERVAL);
+
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      spinner.style.display = 'inline-block';
+      // open download in new tab; it will auto-download when ready
+      window.open('/download', '_blank');
+    });
+  </script>
+</body>
+</html>
