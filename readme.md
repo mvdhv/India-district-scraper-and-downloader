@@ -89,7 +89,7 @@ docker run -p 5001:5000 \
 
 ## Cloud Deployment (Render)
 
-This project supports one-click deployment on Render using the Dockerfile. But currently, this has been *** suspended *** pending further updates in the code.
+This project supports one-click deployment on Render using the Dockerfile. But currently, this has been **suspended** pending further updates in the code.
 
 ---
 
@@ -97,15 +97,15 @@ This project supports one-click deployment on Render using the Dockerfile. But c
 
 The current release is functional but streamlined for testing and demonstration. Planned future development includes:
 
-- *** Automated scheduled scraping *** (daily/weekly data refresh).
-- *** Integration with the IndiaStateStory.in platform *** for public dissemination.
-- *** Improved concurrency handling, *** including:
+- **Automated scheduled scraping** (daily/weekly data refresh).
+- **Integration with the IndiaStateStory.in platform** for public dissemination.
+- **Improved concurrency handling,** including:
     - Run-locks
     - Background job queues
     - Per-user rate limiting
-- *** Persistent storage *** (e.g., S3) for long-term archival of scraped datasets.
-- *** Improved progress visualization *** and asynchronous UI.
-- *** State-level selective scraping *** for faster demos and modular data retrieval.
+- **Persistent storage** (e.g., S3) for long-term archival of scraped datasets.
+- **Improved progress visualization** and asynchronous UI.
+- **State-level selective scraping** for faster demos and modular data retrieval.
 
 ---
 
@@ -114,26 +114,24 @@ The current release is functional but streamlined for testing and demonstration.
 This repository contains contributions from multiple researchers:
 
 ### Scraping Logic & Core Data Extraction (igod_scraper.py)
-Developed by
-*** Ms. Anumeha Saxena ***
-Research Associate
-India Gold Policy Centre
-Indian Institute of Management Ahmedabad
+Developed by  
+**Ms. Anumeha Saxena**  
+Research Associate   
+India Gold Policy Centre  
+Indian Institute of Management Ahmedabad   
 
 ### Web Application, Automation, Integration, Deployment
-Developed by
-*** Mr. Madhav Singh ***
-Senior Research Associate
-Centre for Legislative Education and Research (CLER)
-FLAME University
-
-Their combined work enables robust and reproducible scraping of India’s administrative geography from IGOD.
+Developed by  
+**Mr. Madhav Singh**  
+Senior Research Associate  
+Centre for Legislative Education and Research (CLER)  
+FLAME University   
 
 ---
 
 ## License and Rights
 
-*** All rights reserved. ***
+**All rights reserved.**  
 This project is not open-source and redistribution is restricted unless explicit written permission is granted by the contributors and affiliated institutions. Use of this codebase, in whole or in part, requires proper attribution to the original developers as noted above.
 
 ---
